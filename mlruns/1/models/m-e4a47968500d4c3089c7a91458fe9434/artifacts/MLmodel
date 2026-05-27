@@ -1,0 +1,28 @@
+artifact_path: /workspaces/mlops_sample/mlruns/1/models/m-e4a47968500d4c3089c7a91458fe9434/artifacts
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.9.12
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: xgb
+    xgb_version: 2.1.4
+is_signature_from_type_hint: false
+mlflow_version: 3.1.4
+model_id: m-e4a47968500d4c3089c7a91458fe9434
+model_size_bytes: 1354597
+model_uuid: m-e4a47968500d4c3089c7a91458fe9434
+prompts: null
+run_id: e5841658e52c49538a30613ef1f46e2f
+signature:
+  inputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1, 11]}}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float32", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-05-27 10:19:00.028121'
