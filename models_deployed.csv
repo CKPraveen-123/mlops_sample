@@ -1,2 +1,0 @@
-Model,RMSE,R2,deployment_Status,deployed_time
-RandomForestRegressor,6.869,0.7593,In_Production,2026-06-09 05:31:54
