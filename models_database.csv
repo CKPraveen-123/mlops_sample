@@ -1,0 +1,8 @@
+Model,RMSE,R2
+RandomForestRegressor,6.7502,0.7675
+SVR,7.4819,0.7144
+DecisionTreeRegressor,7.8334,0.6869
+PolynomialRegression,7.8825,0.683
+KNeighborsRegressor,8.2502,0.6527
+LinearRegression,8.4298,0.6374
+Lasso,8.9152,0.5945

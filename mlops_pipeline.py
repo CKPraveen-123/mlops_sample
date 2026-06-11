@@ -1,15 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[31]:
-
-
-#Importing all the required libraries
-
-
-# In[32]:
-
-
+#Importing Required Libraries
 import argparse
 import warnings
 warnings.filterwarnings("ignore")
@@ -28,34 +17,16 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 import datetime
 from xgboost import XGBRegressor
+import mlflow
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("RealEstate_Price_Prediction")
 
 
-# In[33]:
-
-
-data_source = 'Real estate.csv'
-
-
-# In[34]:
-
-
+#List of alogorithms to consider
 algorithm_list = [LinearRegression(), Lasso(alpha=1.0), KNeighborsRegressor(n_neighbors=5), DecisionTreeRegressor(), RandomForestRegressor()]
 
-
-# In[35]:
-
-
-#Functions
-
-#1. for data preparation and feature engineering
-#2. training and selecting the best model and deploying it-first time
-#3. training and deployig a new model
-
-
-# In[36]:
-
-
-#Data Processing
+data_source = "Real estate.csv"
+#Stage 1: Data Processing
 
 def process_data(data_source):
     dataset = pd.read_csv(data_source)
@@ -68,12 +39,10 @@ def process_data(data_source):
     #return X_train = df[0], X_test= df[1], y_train= df[2], y_test= df[3]
 
 
-# In[37]:
-
-
-#Train Models
+#Stage 2: Training different Models
 
 def train_models(X_train, y_train, X_test, y_test):
+    mlflow.sklearn.autolog()
     tested_models = []
     tested_models.clear()
     for each_algorithm in algorithm_list:
@@ -142,10 +111,7 @@ def train_models(X_train, y_train, X_test, y_test):
         return 'models_database.csv'
 
 
-# In[38]:
-
-
-#Deploying the best performing model - high R2 and low RMSE
+#Stage 3: Deploying the best performing model - high R2 and low RMSE
 
 def model_deployment(trained_models_database):
     models_df = pd.read_csv(trained_models_database)
@@ -180,28 +146,12 @@ def model_deployment(trained_models_database):
         print("Stage 3: Best Model deployed Successfully" + "\u2705")
 
 
-# In[39]:
-
-
-#Running Script
-
-
-# In[40]:
-
-
-df = process_data(data_source)
-db = train_models(df[0], df[2], df[1], df[3])
-model_deployment(db)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+if __name__ == "__main__":
+    
+    
+    def run_experiment():
+        df = process_data(data_source=data_source)
+        db = train_models(df[0], df[2], df[1], df[3])
+        model_deployment(db)
+    
+    run_experiment()
