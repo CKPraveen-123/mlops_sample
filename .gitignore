@@ -216,3 +216,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+webservice/house_model.tar*
+webservice/house_model.tar*
